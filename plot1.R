@@ -1,0 +1,6 @@
+library(sqldf)
+pc <- read.csv.sql("household_power_consumption.txt", sep=";", 'Select "Global_active_power" from file where (Date = "1/2/2007" or Date = "2/2/2007") and Global_active_power != "?"')
+pc$Global_active_power <- as.numeric(pc$Global_active_power)
+png("plot1.png")
+hist(pc$Global_active_power, xlab="Global Active Power (kilowatts)", ylab="Frequency", main="Global Active Power", col = "red")
+dev.off()
